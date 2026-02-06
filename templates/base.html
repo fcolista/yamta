@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>{% block title %}Mileage Dashboard{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FAC638",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#231e0f"
+                    },
+                    fontFamily: {
+                        display: "Inter"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-300">
+    <div
+        class="relative flex min-h-screen w-full max-w-[430px] mx-auto flex-col bg-background-light dark:bg-background-dark shadow-2xl overflow-x-hidden pb-24">
+
+        <!-- Top App Bar -->
+        <div
+            class="sticky top-0 z-20 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between border-b border-slate-200 dark:border-white/5">
+            <div class="flex size-10 shrink-0 items-center justify-center">
+                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary"
+                    data-alt="User profile avatar"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDCLZwOC_EJ3RzHxN3e0X4o1tTH7LxO-STjYTX3uw4m3DvH0CGliNIH7a9MffTpOQynkTDzBcE1knXjWj3oh_QXN8ejjxgN2yXMYgtYBSeH4CE0oeUV63vKDPZQOl-7IX99CqWZz89rFdv_LjfToNrMe3U-cWgAhr2Xo0KEJxmh10BKjljsKWh4wXGW_auh8cEwz3wmQJsYMPUiuIExXNgT6CgOP0ZlnOMD8i3pNcolr74ztCCteymdJklXzLuItbstL1cgrEp9JojI");'>
+                </div>
+            </div>
+            <h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 ml-3">
+                {% block header %}Mileage Dashboard{% endblock %}
+            </h2>
+            <div class="flex w-10 items-center justify-end">
+                <a href="{% url 'settings' %}"
+                    class="flex cursor-pointer items-center justify-center rounded-full h-10 w-10 bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white transition-colors hover:bg-slate-200 dark:hover:bg-white/20">
+                    <span class="material-symbols-outlined">settings</span>
+                </a>
+            </div>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        {% block fab %}
+        <!-- Floating Action Button -->
+        <div class="fixed bottom-24 right-4 z-30">
+            <a href="{% url 'add_journey' %}"
+                class="flex items-center justify-center h-14 w-14 rounded-full bg-primary text-background-dark shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-transform">
+                <span class="material-symbols-outlined text-3xl font-bold">add</span>
+            </a>
+        </div>
+        {% endblock %}
+
+        <!-- Bottom Tab Bar -->
+        <div
+            class="fixed bottom-0 left-0 right-0 z-40 max-w-[430px] mx-auto bg-white/90 dark:bg-background-dark/90 backdrop-blur-lg border-t border-slate-200 dark:border-white/5 px-8 py-3 pb-8">
+            <div class="flex justify-between items-center">
+                <a href="{% url 'dashboard' %}"
+                    class="flex flex-col items-center gap-1 {% if request.resolver_match.url_name == 'dashboard' %}text-primary{% else %}text-slate-400 dark:text-slate-500{% endif %}">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="text-[10px] font-bold">Dashboard</span>
+                </a>
+                <a href="{% url 'history' %}"
+                    class="flex flex-col items-center gap-1 {% if request.resolver_match.url_name == 'history' %}text-primary{% else %}text-slate-400 dark:text-slate-500{% endif %} hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">history</span>
+                    <span class="text-[10px] font-medium">History</span>
+                </a>
+                <a href="{% url 'reports' %}"
+                    class="flex flex-col items-center gap-1 {% if request.resolver_match.url_name == 'reports' %}text-primary{% else %}text-slate-400 dark:text-slate-500{% endif %} hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">bar_chart</span>
+                    <span class="text-[10px] font-medium">Reports</span>
+                </a>
+                <a href="{% url 'settings' %}"
+                    class="flex flex-col items-center gap-1 {% if request.resolver_match.url_name == 'settings' %}text-primary{% else %}text-slate-400 dark:text-slate-500{% endif %}">
+                    <span class="material-symbols-outlined">person</span>
+                    <span class="text-[10px] font-medium">Profile</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

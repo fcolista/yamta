@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block header %}Reports{% endblock %}
+
+{% block fab %}{% endblock %}
+
+{% block content %}
+<div class="px-4 py-6">
+    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Cost by Fuel Type</h3>
+    
+    <div class="flex flex-col gap-4">
+        {% for item in report_data %}
+        <div class="bg-white dark:bg-[#1a3629] p-5 rounded-xl shadow-sm border border-slate-100 dark:border-white/5">
+            <div class="flex items-center justify-between mb-2">
+                <div class="font-bold text-slate-900 dark:text-white text-lg">{{ item.fuel_type }}</div>
+                <div class="text-xs font-semibold text-slate-400 px-2 py-1 bg-slate-100 dark:bg-white/10 rounded-full">{{ item.count }} Trips</div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mt-4">
+                <div>
+                   <p class="text-xs text-slate-500 dark:text-[#92c9ad] uppercase tracking-wider font-bold mb-1">Total Spent</p>
+                   <p class="text-xl font-bold text-primary">{{ currency }}{{ item.total_cost|floatformat:2 }}</p>
+                </div>
+                <div>
+                   <p class="text-xs text-slate-500 dark:text-[#92c9ad] uppercase tracking-wider font-bold mb-1">Distance</p>
+                   <p class="text-xl font-bold text-slate-900 dark:text-white">{{ item.total_distance|floatformat:1 }} km</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+         <div class="flex flex-col items-center justify-center py-20 px-4 text-center text-slate-500">
+            <span class="material-symbols-outlined text-4xl mb-2 text-slate-300">bar_chart</span>
+            <p>No data to report yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

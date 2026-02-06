@@ -1,0 +1,19 @@
+services:
+  web:
+    build: .
+    command: gunicorn --bind 0.0.0.0:8000 mileage_tracker_config.wsgi:application
+    volumes:
+      - data:/app/data
+      - static_volume:/app/staticfiles
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SECRET_KEY=production_secret_key_change_me
+      - DEBUG=False
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+      - PROD=True
+    restart: always
+
+volumes:
+  data:
+  static_volume:
