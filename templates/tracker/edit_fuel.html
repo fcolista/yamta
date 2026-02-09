@@ -1,52 +1,42 @@
 {% extends 'base.html' %}
-{% block header %}Edit Fuel Type{% endblock %}
 
-{% block fab %}{% endblock %}
+{% block header %}Edit Fuel{% endblock %}
 
 {% block content %}
 <div class="px-4 py-6">
-    <form method="post" class="flex flex-col gap-4">
+    <form method="post" class="space-y-6">
         {% csrf_token %}
-        
-        <div class="bg-white dark:bg-[#1a3629] p-4 rounded-xl shadow-sm border border-slate-100 dark:border-white/5">
-            <h3 class="font-bold text-slate-900 dark:text-white mb-4">{{ form.instance.name }}</h3>
-            
-             <div class="grid grid-cols-2 gap-4">
-                <div class="col-span-2">
-                    <label class="block text-xs font-medium text-slate-500 mb-1">Name</label>
-                    {{ form.name }}
-                </div>
+
+        <div class="space-y-4">
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Name</label>
+                {{ form.name }}
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-xs font-medium text-slate-500 mb-1">Cost / Unit</label>
+                    <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">
+                        Cost per {{ fuel.unit_name }}
+                    </label>
                     {{ form.cost_per_unit }}
                 </div>
                 <div>
-                    <label class="block text-xs font-medium text-slate-500 mb-1">Unit Name</label>
+                    <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Unit Name</label>
                     {{ form.unit_name }}
                 </div>
-                <div class="col-span-2">
-                    <label class="block text-xs font-medium text-slate-500 mb-1">Efficiency (km per Unit)</label>
-                    {{ form.efficiency }}
-                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">Efficiency
+                    (km/unit)</label>
+                {{ form.efficiency }}
             </div>
         </div>
 
-        <div class="mt-4 flex gap-3">
-             <button type="submit"
-                class="flex-1 bg-primary text-background-dark font-bold py-3 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
-                Save
-            </button>
-            <a href="{% url 'settings' %}"
-                class="flex-1 bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-400 font-bold py-3 rounded-xl hover:bg-slate-200 dark:hover:bg-white/10 transition-all">
-                Cancel
-            </a>
-        </div>
-        
-        <div class="border-t border-slate-200 dark:border-white/10 pt-6 mt-2">
-             <a href="{% url 'delete_fuel' fuel.id %}" class="block w-full text-center text-red-500 text-sm font-bold hover:text-red-600">
-                Delete Fuel Type
-            </a>
-        </div>
+        <button type="submit"
+            class="w-full bg-primary text-background-dark font-bold py-4 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+            Save Changes
+        </button>
     </form>
 </div>
 {% endblock %}

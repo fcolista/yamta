@@ -15,38 +15,48 @@
             <p class="text-sm text-blue-800 dark:text-blue-200 mb-4">
                 Set your preferred currency and default fuel type for new journeys.
             </p>
-            
+
             <div class="space-y-4">
                 <div class="flex flex-col gap-1">
-                    <label for="{{ form.currency.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">Currency Symbol</label>
+                    <label for="{{ form.currency.id_for_label }}"
+                        class="text-sm font-medium text-slate-700 dark:text-slate-300">Currency Symbol</label>
                     {{ form.currency }}
-                    {% if form.currency.errors %}<p class="text-xs text-red-500">{{ form.currency.errors.0 }}</p>{% endif %}
+                    {% if form.currency.errors %}
+                    <p class="text-xs text-red-500">{{ form.currency.errors.0 }}</p>
+                    {% endif %}
                 </div>
                 <div class="flex flex-col gap-1">
-                    <label for="{{ form.default_fuel_type.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">Default Fuel Type</label>
+                    <label for="{{ form.default_fuel_type.id_for_label }}"
+                        class="text-sm font-medium text-slate-700 dark:text-slate-300">Default Fuel Type</label>
                     {{ form.default_fuel_type }}
-                     {% if form.default_fuel_type.errors %}<p class="text-xs text-red-500">{{ form.default_fuel_type.errors.0 }}</p>{% endif %}
+                    {% if form.default_fuel_type.errors %}
+                    <p class="text-xs text-red-500">{{ form.default_fuel_type.errors.0 }}</p>
+                    {% endif %}
                 </div>
             </div>
-            
-            <button type="submit" class="w-full mt-4 bg-primary text-background-dark font-bold py-3 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
-                Save Defaults
-            </button>
         </div>
+
+        <button type="submit"
+            class="w-full mt-4 bg-primary text-background-dark font-bold py-3 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+            Save Defaults
+        </button>
     </form>
 
     <!-- Fuel Types Management -->
     <div>
         <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Fuel Types</h3>
-        
+
         <!-- List existing -->
         <div class="flex flex-col gap-3 mb-6">
             {% for fuel in fuel_types %}
-            <a href="{% url 'edit_fuel' fuel.id %}" class="flex items-center justify-between p-4 bg-white dark:bg-[#1a3629] rounded-xl shadow-sm border border-slate-100 dark:border-white/5 hover:border-primary/50 transition-colors">
+            <a href="{% url 'edit_fuel' fuel.id %}"
+                class="flex items-center justify-between p-4 bg-white dark:bg-[#1a3629] rounded-xl shadow-sm border border-slate-100 dark:border-white/5 hover:border-primary/50 transition-colors">
                 <div>
                     <p class="font-bold text-slate-900 dark:text-white">{{ fuel.name }}</p>
                     <p class="text-xs text-slate-500 dark:text-[#92c9ad]">
-                        {{ currency }}{{ fuel.cost_per_unit }}/{{ fuel.unit_name }} • {{ fuel.efficiency }} km/{{ fuel.unit_name }}
+                        <span>{{ currency }}{{ fuel.cost_per_unit }}/{{ fuel.unit_name }}</span>
+                        <span>•</span>
+                        <span>{{ fuel.efficiency }} km/{{ fuel.unit_name }}</span>
                     </p>
                 </div>
                 <span class="text-slate-400 material-symbols-outlined text-sm">edit</span>
@@ -57,11 +67,12 @@
         </div>
 
         <!-- Add New Fuel Form -->
-        <form method="post" class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/5">
+        <form method="post"
+            class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/5">
             {% csrf_token %}
             <input type="hidden" name="add_fuel" value="true">
             <h4 class="font-bold text-slate-900 dark:text-white mb-4 text-sm uppercase tracking-wider">Add New Fuel</h4>
-            
+
             <div class="grid grid-cols-2 gap-4">
                 <div class="col-span-2">
                     <label class="block text-xs font-medium text-slate-500 mb-1">Name</label>
@@ -78,17 +89,31 @@
                 <div class="col-span-2">
                     <label class="block text-xs font-medium text-slate-500 mb-1">Efficiency (km per Unit)</label>
                     {{ fuel_form.efficiency }}
-                    <p class="text-[10px] text-slate-400 mt-1">Used to calculate quantity from distance automatically.</p>
+                    <p class="text-[10px] text-slate-400 mt-1">Used to calculate quantity from distance automatically.
+                    </p>
                 </div>
             </div>
 
-            <button type="submit" class="w-full mt-4 bg-slate-200 dark:bg-white/10 text-slate-900 dark:text-white font-bold py-2 rounded-lg hover:bg-primary hover:text-background-dark transition-all">
+            <button type="submit"
+                class="w-full mt-4 bg-slate-200 dark:bg-white/10 text-slate-900 dark:text-white font-bold py-2 rounded-lg hover:bg-primary hover:text-background-dark transition-all">
                 Add Fuel Type
             </button>
         </form>
     </div>
-    
-    <a href="{% url 'dashboard' %}" class="block w-full text-center text-slate-500 dark:text-slate-400 text-sm font-bold pb-4">
+
+    <!-- Logout Button -->
+    <div class="pt-4 border-t border-slate-100 dark:border-white/5">
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="w-full flex items-center justify-center gap-2 p-3 text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/30 rounded-xl font-bold transition-colors">
+                <span class="material-symbols-outlined">logout</span>
+                Log Out
+            </button>
+        </form>
+    </div>
+
+    <a href="{% url 'dashboard' %}"
+        class="block w-full text-center text-slate-500 dark:text-slate-400 text-sm font-bold pb-4">
         Back to Dashboard
     </a>
 </div>

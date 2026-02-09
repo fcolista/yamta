@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% block header %}{% if is_edit %}Edit Journey{% else %}Add Journey{% endif %}{% endblock %}
+{% load i18n %}
+{% block header %}{% if is_edit %}{% trans "Edit Journey" %}{% else %}{% trans "Add Journey" %}{% endif %}{% endblock %}
 
 {% block fab %}{% endblock %}
 
@@ -10,70 +11,80 @@
 
         <!-- Fuel Type Selection -->
         <div class="flex flex-col gap-1">
-            <label for="{{ form.fuel_type_select.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.fuel_type_select.label }}</label>
+            <label for="{{ form.fuel_type_select.id_for_label }}"
+                class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.fuel_type_select.label }}</label>
             {{ form.fuel_type_select }}
-            {% if form.fuel_type_select.errors %}<p class="text-xs text-red-500">{{ form.fuel_type_select.errors.0 }}</p>{% endif %}
+            {% if form.fuel_type_select.errors %}<p class="text-xs text-red-500">{{ form.fuel_type_select.errors.0 }}
+            </p>{% endif %}
         </div>
 
         <div class="grid grid-cols-2 gap-4">
             <!-- Date -->
             <div class="col-span-2 flex flex-col gap-1">
-                 <label for="{{ form.date.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.date.label }}</label>
-                 {{ form.date }}
+                <label for="{{ form.date.id_for_label }}"
+                    class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.date.label }}</label>
+                {{ form.date }}
             </div>
 
             <!-- Distance -->
             <div class="flex flex-col gap-1">
-                 <label for="{{ form.distance.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.distance.label }} (km)</label>
-                 {{ form.distance }}
+                <label for="{{ form.distance.id_for_label }}"
+                    class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.distance.label }}
+                    (km)</label>
+                {{ form.distance }}
             </div>
 
             <!-- Cost Per Unit -->
             <div class="flex flex-col gap-1">
-                 <label for="{{ form.cost_per_liter.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.cost_per_liter.label }}</label>
-                 <div class="relative">
-                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">{{ currency }}</span>
-                     {{ form.cost_per_liter }}
-                 </div>
+                <label for="{{ form.cost_per_liter.id_for_label }}"
+                    class="text-sm font-medium text-slate-700 dark:text-slate-300">{% trans "Cost per Unit" %}</label>
+                <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">{{ currency }}</span>
+                    {{ form.cost_per_liter }}
+                </div>
             </div>
-            
+
             <!-- Fuel Quantity -->
-             <div class="flex flex-col gap-1">
-                 <label for="{{ form.fuel_quantity.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.fuel_quantity.label }}</label>
-                 {{ form.fuel_quantity }}
+            <div class="flex flex-col gap-1">
+                <label for="{{ form.fuel_quantity.id_for_label }}"
+                    class="text-sm font-medium text-slate-700 dark:text-slate-300">{% trans "Fuel Quantity" %}</label>
+                {{ form.fuel_quantity }}
             </div>
 
             <!-- Total Cost -->
-             <div class="flex flex-col gap-1">
-                 <label for="{{ form.total_cost.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.total_cost.label }}</label>
-                 <div class="relative">
-                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">{{ currency }}</span>
-                     {{ form.total_cost }}
-                 </div>
+            <div class="flex flex-col gap-1">
+                <label for="{{ form.total_cost.id_for_label }}"
+                    class="text-sm font-medium text-slate-700 dark:text-slate-300">{% trans "Total Cost" %}</label>
+                <div class="relative">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">{{ currency }}</span>
+                    {{ form.total_cost }}
+                </div>
             </div>
         </div>
 
         <!-- Reason -->
         <div class="flex flex-col gap-1">
-             <label for="{{ form.reason.id_for_label }}" class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.reason.label }}</label>
-             {{ form.reason }}
+            <label for="{{ form.reason.id_for_label }}"
+                class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ form.reason.label }}</label>
+            {{ form.reason }}
         </div>
 
         <div class="mt-4 flex gap-3">
             <button type="submit"
                 class="flex-1 bg-primary text-background-dark font-bold py-3 rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
-                {% if is_edit %}Update{% else %}Save{% endif %}
+                {% if is_edit %}{% trans "Update" %}{% else %}{% trans "Save" %}{% endif %}
             </button>
             <a href="{% url 'dashboard' %}"
                 class="flex-1 bg-slate-100 dark:bg-white/5 flex items-center justify-center text-slate-500 dark:text-slate-400 font-bold py-3 rounded-xl hover:bg-slate-200 dark:hover:bg-white/10 transition-all">
-                Cancel
+                {% trans "Cancel" %}
             </a>
         </div>
 
         {% if is_edit %}
         <div class="border-t border-slate-200 dark:border-white/10 pt-6 mt-2">
-             <a href="{% url 'delete_journey' journey.id %}" class="block w-full text-center text-red-500 text-sm font-bold hover:text-red-600">
-                Delete Journey
+            <a href="{% url 'delete_journey' journey.id %}"
+                class="block w-full text-center text-red-500 text-sm font-bold hover:text-red-600">
+                {% trans "Delete Journey" %}
             </a>
         </div>
         {% endif %}
@@ -84,15 +95,15 @@
     // Fuel Data for calculations
     const fuelData = {
         {% for fuel in form.fields.fuel_type_select.queryset %}
-        "{{ fuel.id }}": { 
-            "cost": {{ fuel.cost_per_unit|default:0 }}, 
-            "efficiency": {{ fuel.efficiency|default:15 }} 
-        },
-        {% endfor %}
+    "{{ fuel.id }}": {
+        "cost": { { fuel.cost_per_unit |default: 0 } },
+        "efficiency": { { fuel.efficiency |default: 15 } }
+    },
+    {% endfor %}
     };
 
     const fuelSelect = document.getElementById('{{ form.fuel_type_select.id_for_label }}');
-    const costInput = document.getElementById('{{ form.cost_per_liter.id_for_label }}'); 
+    const costInput = document.getElementById('{{ form.cost_per_liter.id_for_label }}');
     const distanceInput = document.getElementById('{{ form.distance.id_for_label }}');
     const quantityInput = document.getElementById('{{ form.fuel_quantity.id_for_label }}');
     const totalCostInput = document.getElementById('{{ form.total_cost.id_for_label }}');
@@ -100,8 +111,8 @@
     function updateCalculations() {
         const selectedId = fuelSelect.value;
         const distance = parseFloat(distanceInput.value) || 0;
-        
-        let efficiency = 15; 
+
+        let efficiency = 15;
         let unitCost = parseFloat(costInput.value) || 0;
 
         if (selectedId && fuelData[selectedId]) {
@@ -111,13 +122,13 @@
         if (distance > 0 && efficiency > 0) {
             const calculatedQty = distance / efficiency;
             quantityInput.value = calculatedQty.toFixed(2);
-            
+
             const total = calculatedQty * unitCost;
             totalCostInput.value = total.toFixed(2);
         }
     }
 
-    fuelSelect.addEventListener('change', function() {
+    fuelSelect.addEventListener('change', function () {
         const selectedId = this.value;
         if (selectedId && fuelData[selectedId]) {
             costInput.value = fuelData[selectedId].cost;
@@ -126,11 +137,11 @@
     });
 
     distanceInput.addEventListener('input', updateCalculations);
-    costInput.addEventListener('input', function() {
-        const qty = parseFloat(quantityInput.value) || 0; 
+    costInput.addEventListener('input', function () {
+        const qty = parseFloat(quantityInput.value) || 0;
         const unitCost = parseFloat(this.value) || 0;
         if (qty > 0) {
-             totalCostInput.value = (qty * unitCost).toFixed(2);
+            totalCostInput.value = (qty * unitCost).toFixed(2);
         }
     });
 </script>

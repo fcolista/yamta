@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block header %}{% trans "Login" %}{% endblock %}
+
+{% block fab %}{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-[50vh] px-4">
+    <div
+        class="w-full max-w-sm bg-white dark:bg-[#1a3629] p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-white/5">
+        <div class="mb-8 text-center">
+            <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                {% trans "Welcome Back" %}
+            </h1>
+            <p class="text-slate-500 dark:text-slate-400 text-sm">
+                {% trans "Sign in to access your dashboard" %}
+            </p>
+        </div>
+
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <div class="mb-4 p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 text-sm rounded-lg">
+                {% trans "Incorrect username or password." %}
+            </div>
+            {% endif %}
+
+            <div class="space-y-4">
+                <div>
+                    <label for="id_username"
+                        class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">
+                        {% trans "Username" %}
+                    </label>
+                    <input type="text" name="username" autofocus required id="id_username"
+                        class="form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5">
+                </div>
+
+                <div>
+                    <label for="id_password"
+                        class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1">
+                        {% trans "Password" %}
+                    </label>
+                    <input type="password" name="password" required id="id_password"
+                        class="form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5">
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-primary text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-primary/30 hover:bg-primary/90 transition-all transform hover:scale-[1.02] active:scale-[0.98]">
+                    {% trans "Sign In" %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -65,6 +65,9 @@ The application is configured via environment variables defined in `docker-compo
 | `DEBUG` | Django debug mode. **Set to `False` in production.** | `False` |
 | `DJANGO_SECRET_KEY` | Secret cryptographic key for Django. **Change this to a random string in production.** | `production_secret_key_change_me` |
 | `ALLOWED_HOSTS` | Comma-separated list of valid hostnames/IPs that can serve the app. | `localhost,127.0.0.1` |
+| `CSRF_TRUSTED_ORIGINS` | Comma-separated list of trusted origins for CSRF verification (include scheme, e.g., https://example.com). | `http://localhost:8000` |
+| `HOST` | The IP address the application binds to inside the container. | `0.0.0.0` |
+| `PORT` | The port the application binds to inside the container and exposes. | `8000` |
 
 ### Volumes and Persistence
 

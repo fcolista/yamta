@@ -1,26 +1,23 @@
 {% extends 'base.html' %}
+
 {% block header %}Delete {{ type }}{% endblock %}
 
-{% block fab %}{% endblock %}
-
 {% block content %}
-<div class="px-4 py-6 flex flex-col items-center justify-center h-[60vh]">
-    <div class="bg-white dark:bg-[#1a3629] p-6 rounded-2xl shadow-lg border border-red-100 dark:border-red-900/20 max-w-sm w-full text-center">
-        <div class="size-14 rounded-full bg-red-50 dark:bg-red-900/20 flex items-center justify-center mx-auto mb-4 text-red-500">
-            <span class="material-symbols-outlined text-3xl">delete</span>
-        </div>
-        
-        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Delete {{ type }}?</h3>
-        <p class="text-slate-500 dark:text-slate-400 mb-6 text-sm">
-            Are you sure you want to delete <strong>{{ object }}</strong>? This action cannot be undone.
-        </p>
-        
+<div class="flex flex-col items-center justify-center min-h-[50vh] px-4">
+    <div
+        class="w-full max-w-sm bg-white dark:bg-[#1a3629] p-8 rounded-2xl shadow-lg border border-slate-100 dark:border-white/5 text-center">
+        <span class="material-symbols-outlined text-4xl text-red-500 mb-4">warning</span>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Are you sure?</h2>
+        <p class="text-slate-500 dark:text-slate-400 mb-6">This action cannot be undone.</p>
+
         <form method="post" class="flex flex-col gap-3">
             {% csrf_token %}
-            <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-xl transition-colors">
-                Yes, Delete It
+            <button type="submit"
+                class="w-full bg-red-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-red-500/30 hover:bg-red-600 transition-colors">
+                Yes, Delete
             </button>
-            <a href="javascript:history.back()" class="w-full bg-slate-100 dark:bg-white/5 hover:bg-slate-200 text-slate-900 dark:text-white font-bold py-3 rounded-xl transition-colors">
+            <a href="javascript:history.back()"
+                class="w-full bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-white font-bold py-3 px-4 rounded-xl hover:bg-slate-200 dark:hover:bg-white/20 transition-colors">
                 Cancel
             </a>
         </form>

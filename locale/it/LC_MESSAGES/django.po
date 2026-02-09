@@ -1,0 +1,140 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+msgid "Dashboard"
+msgstr "Cruscotto"
+
+msgid "History"
+msgstr "Cronologia"
+
+msgid "Reports"
+msgstr "Resoconti"
+
+msgid "Profile"
+msgstr "Profilo"
+
+msgid "Total Spent"
+msgstr "Spesa Totale"
+
+msgid "Distance"
+msgstr "Distanza"
+
+msgid "logs"
+msgstr "viaggi"
+
+msgid "Recent Journeys"
+msgstr "Viaggi Recenti"
+
+msgid "No journeys logged yet for this month."
+msgstr "Nessun viaggio registrato per questo mese."
+
+msgid "Login"
+msgstr "Accedi"
+
+msgid "Welcome Back"
+msgstr "Bentornato"
+
+msgid "Sign in to access your dashboard"
+msgstr "Accedi per visualizzare la dashboard"
+
+msgid "Username"
+msgstr "Nome utente"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Sign In"
+msgstr "Accedi"
+
+msgid "Incorrect username or password."
+msgstr "Nome utente o password errati."
+
+msgid "Settings"
+msgstr "Impostazioni"
+
+msgid "Language"
+msgstr "Lingua"
+
+msgid "Default Fuel Type"
+msgstr "Tipo Carburante Predefinito"
+
+msgid "Currency"
+msgstr "Valuta"
+
+msgid "Add Journey"
+msgstr "Aggiungi Viaggio"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "Reason"
+msgstr "Motivo"
+
+msgid "Fuel Type"
+msgstr "Tipo Carburante"
+
+msgid "Save"
+msgstr "Salva"
+
+msgid "English"
+msgstr "Inglese"
+
+msgid "Italian"
+msgstr "Italiano"
+
+msgid "Car"
+msgstr "Auto"
+
+msgid "Car Name"
+msgstr "Nome Auto"
+
+msgid "Make"
+msgstr "Marca"
+
+msgid "Model"
+msgstr "Modello"
+
+msgid "General Defaults"
+msgstr "Impostazioni Generali"
+
+msgid "Set your preferred currency and default fuel type for new journeys."
+msgstr "Imposta la valuta preferita e il tipo di carburante predefinito per i nuovi viaggi."
+
+msgid "Currency Symbol"
+msgstr "Simbolo Valuta"
+
+msgid "Save Defaults"
+msgstr "Salva Predefiniti"
+
+msgid "Fuel Types"
+msgstr "Tipi di Carburante"
+
+msgid "No fuel types defined yet."
+msgstr "Nessun tipo di carburante definito."
+
+msgid "Add New Fuel"
+msgstr "Aggiungi Nuovo Carburante"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Cost / Unit"
+msgstr "Costo / Unità"
+
+msgid "Unit Name"
+msgstr "Nome Unità"
+
+msgid "Efficiency (km per Unit)"
+msgstr "Efficienza (km per Unità)"
+
+msgid "Used to calculate quantity from distance automatically."
+msgstr "Usato per calcolare automaticamente la quantità dalla distanza."
+
+msgid "Add Fuel Type"
+msgstr "Aggiungi Tipo Carburante"
+
+msgid "Back to Dashboard"
+msgstr "Torna alla Dashboard"

@@ -83,6 +83,7 @@
         </div>
         {% endblock %}
 
+        {% load i18n %}
         <!-- Bottom Tab Bar -->
         <div
             class="fixed bottom-0 left-0 right-0 z-40 max-w-[430px] mx-auto bg-white/90 dark:bg-background-dark/90 backdrop-blur-lg border-t border-slate-200 dark:border-white/5 px-8 py-3 pb-8">
@@ -90,22 +91,22 @@
                 <a href="{% url 'dashboard' %}"
                     class="flex flex-col items-center gap-1 {% if request.resolver_match.url_name == 'dashboard' %}text-primary{% else %}text-slate-400 dark:text-slate-500{% endif %}">
                     <span class="material-symbols-outlined">dashboard</span>
-                    <span class="text-[10px] font-bold">Dashboard</span>
+                    <span class="text-[10px] font-bold">{% trans "Dashboard" %}</span>
                 </a>
                 <a href="{% url 'history' %}"
                     class="flex flex-col items-center gap-1 {% if request.resolver_match.url_name == 'history' %}text-primary{% else %}text-slate-400 dark:text-slate-500{% endif %} hover:text-primary transition-colors">
                     <span class="material-symbols-outlined">history</span>
-                    <span class="text-[10px] font-medium">History</span>
+                    <span class="text-[10px] font-medium">{% trans "History" %}</span>
                 </a>
                 <a href="{% url 'reports' %}"
                     class="flex flex-col items-center gap-1 {% if request.resolver_match.url_name == 'reports' %}text-primary{% else %}text-slate-400 dark:text-slate-500{% endif %} hover:text-primary transition-colors">
                     <span class="material-symbols-outlined">bar_chart</span>
-                    <span class="text-[10px] font-medium">Reports</span>
+                    <span class="text-[10px] font-medium">{% trans "Reports" %}</span>
                 </a>
                 <a href="{% url 'settings' %}"
                     class="flex flex-col items-center gap-1 {% if request.resolver_match.url_name == 'settings' %}text-primary{% else %}text-slate-400 dark:text-slate-500{% endif %}">
                     <span class="material-symbols-outlined">person</span>
-                    <span class="text-[10px] font-medium">Profile</span>
+                    <span class="text-[10px] font-medium">{% trans "Profile" %}</span>
                 </a>
             </div>
         </div>
