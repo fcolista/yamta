@@ -145,4 +145,14 @@
         }
     });
 </script>
+<style>
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        cursor: pointer;
+    }
+
+    input[type="date"] {
+        color-scheme: dark !important;
+    }
+</style>
 {% endblock %}

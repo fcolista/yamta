@@ -37,8 +37,36 @@ Configure global application preferences:
 ### 6. Reports
 Visualize your data:
 - **Cost Distribution**: View a breakdown of costs by fuel type.
+- **Monthly Summary**: Consolidated view of monthly mileage and expenses.
 
 ---
+
+## User Management
+
+### Initialization (Docker)
+By default, the application creates a superuser account on startup using the environment variables defined in `docker-compose.yml`:
+- **Default Username**: `admin`
+- **Default Password**: `admin`
+
+To change these, update the `DJANGO_SUPERUSER_` variables in your `docker-compose.yml` and restart the containers.
+
+### Creating Users Manually
+You can create additional superusers or manage existing ones using the Django administrative commands.
+
+#### Using Docker
+```bash
+docker-compose exec web python manage.py createsuperuser
+```
+
+#### Local Development
+```bash
+python manage.py createsuperuser
+```
+
+### Administrative Interface
+For advanced user management (e.g., adding regular users, changing permissions, or deleting records manually), access the Django Admin interface at:
+`http://localhost:8000/admin`
+
 
 ## Environment & Configuration
 

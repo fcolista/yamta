@@ -7,19 +7,19 @@ class JourneyForm(forms.ModelForm):
         queryset=FuelType.objects.none(), 
         required=True, 
         label="Fuel Type",
-        widget=forms.Select(attrs={'class': 'form-select w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'})
+        widget=forms.Select(attrs={'class': 'form-select w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'})
     )
     
     car = forms.ModelChoiceField(
         queryset=Car.objects.none(),
         required=False,
         label="Car",
-        widget=forms.Select(attrs={'class': 'form-select w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'})
+        widget=forms.Select(attrs={'class': 'form-select w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'})
     )
 
-    fuel_quantity = forms.DecimalField(required=False, label="Fuel Quantity", widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}))
-    total_cost = forms.DecimalField(required=False, label="Total Cost", widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}))
-    cost_per_liter = forms.DecimalField(required=False, label="Cost per Unit", widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}))
+    fuel_quantity = forms.DecimalField(required=False, label="Fuel Quantity", widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}))
+    total_cost = forms.DecimalField(required=False, label="Total Cost", widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}))
+    cost_per_liter = forms.DecimalField(required=False, label="Cost per Unit", widget=forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5 pl-7'}))
 
     def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -30,10 +30,10 @@ class JourneyForm(forms.ModelForm):
         model = Journey
         fields = ['date', 'car', 'distance', 'reason', 'cost_per_liter', 'fuel_quantity', 'total_cost']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-            'distance': forms.NumberInput(attrs={'step': '0.1', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-            'reason': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-            'cost_per_liter': forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+            'distance': forms.NumberInput(attrs={'step': '0.1', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+            'reason': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+            'cost_per_liter': forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5 pl-7'}),
         }
 
     def clean(self):
@@ -101,10 +101,10 @@ class FuelTypeForm(forms.ModelForm):
         model = FuelType
         fields = ['name', 'cost_per_unit', 'unit_name', 'efficiency']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-            'cost_per_unit': forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-            'unit_name': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-            'efficiency': forms.NumberInput(attrs={'step': '0.1', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
+            'name': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+            'cost_per_unit': forms.NumberInput(attrs={'step': '0.01', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+            'unit_name': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+            'efficiency': forms.NumberInput(attrs={'step': '0.1', 'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
         }
 
 class CarForm(forms.ModelForm):
@@ -116,8 +116,8 @@ class CarForm(forms.ModelForm):
         model = Car
         fields = ['name', 'make', 'model', 'fuel_type']
         widgets = {
-             'name': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-             'make': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-             'model': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
-             'fuel_type': forms.Select(attrs={'class': 'form-select w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary'}),
+             'name': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+             'make': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+             'model': forms.TextInput(attrs={'class': 'form-input w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
+             'fuel_type': forms.Select(attrs={'class': 'form-select w-full rounded-lg border-slate-200 dark:border-white/10 bg-background-light dark:bg-background-dark text-slate-900 dark:text-white focus:border-primary focus:ring-primary py-2.5'}),
         }

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum, Q, F, Count
+from django.db.models.functions import TruncMonth
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .models import Journey, Settings, FuelType, Car
@@ -140,11 +141,14 @@ def history_view(request):
     if selected_month and str(selected_month) != 'all':
         journeys = journeys.filter(date__month=selected_month)
 
+    total_distance = journeys.aggregate(Sum('distance'))['distance__sum'] or 0
+
     context = {
         'journeys': journeys,
         'dates': dates,
         'selected_month': int(selected_month) if selected_month and str(selected_month) != 'all' else None,
         'selected_year': int(selected_year) if selected_year and str(selected_year) != 'all' else None,
+        'total_distance': total_distance,
     }
     return render(request, 'tracker/history.html', context)
 
@@ -170,7 +174,16 @@ def reports_view(request):
     
     context = {
         'report_data': data,
-        'currency': settings.currency
+        'currency': settings.currency,
+        'monthly_data': Journey.objects.filter(user=request.user)
+            .annotate(month=TruncMonth('date'))
+            .values('month')
+            .annotate(
+                total_cost=Sum('total_cost'),
+                total_distance=Sum('distance'),
+                count=Count('id')
+            )
+            .order_by('-month')
     }
     return render(request, 'tracker/reports.html', context)
 @login_required
